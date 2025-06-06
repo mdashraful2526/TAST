@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZAM - Premium Products</title>
+    <title>Momte </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -14,82 +15,68 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0;
-            padding: 0;
-            color: #333;
-            max-width: 430px;
-            margin: 0 auto;
             min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
         }
 
         .container {
-            width: 100%;
-            padding: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
         .header {
-            text-align: center;
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .header p {
-            font-size: 1.2rem;
+            font-size: 14px;
             opacity: 0.9;
         }
 
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 10px;
-        }
-
-        .nav-tab {
-            padding: 12px 24px;
-            background: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .nav-tab.active {
-            background: #4CAF50;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        }
-
-        .tab-content {
+        .user-info {
+            background: rgba(255,255,255,0.1);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
             display: none;
         }
 
-        .tab-content.active {
-            display: block;
+        .main-content {
+            padding: 20px;
+            padding-bottom: 80px;
         }
 
         .products-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             margin-bottom: 30px;
         }
 
         .product-card {
             background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -97,142 +84,113 @@
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #6366f1;
         }
 
         .product-icon {
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 15px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        .product-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-            color: #333;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
         }
 
         .product-price {
-            font-size: 1.2rem;
-            color: #4CAF50;
-            font-weight: bold;
+            font-size: 18px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 5px;
             text-align: center;
-            margin-bottom: 10px;
         }
 
-        .product-limit {
-            text-align: center;
+        .product-stock {
+            font-size: 12px;
             color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
         .buy-btn {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
             border: none;
-            border-radius: 25px;
-            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 12px;
         }
 
         .buy-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .collect-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .free-products {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .free-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 15px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
         .account-section {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .balance-display {
-            text-align: center;
-            margin-bottom: 30px;
+            display: none;
             padding: 20px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 15px;
-            color: white;
         }
 
-        .balance-amount {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .tasks-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .task-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            border-left: 4px solid #4CAF50;
-        }
-
-        .task-card:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .task-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .task-reward {
-            color: #4CAF50;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .task-btn {
-            padding: 8px 16px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .task-btn:hover {
-            background: #45a049;
-            transform: scale(1.05);
-        }
-
-        .task-btn.completed {
-            background: #28a745;
-            cursor: not-allowed;
-        }
-
-        .telegram-channel {
-            background: linear-gradient(45deg, #0088cc, #005fa3);
+        .balance-card {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white;
             padding: 20px;
             border-radius: 15px;
@@ -240,536 +198,611 @@
             margin-bottom: 20px;
         }
 
-        .telegram-channel a {
+        .balance-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .tasks-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .tasks-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .task-info {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .task-reward {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .task-btn {
+            background: #6366f1;
             color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .telegram-channel a:hover {
-            text-decoration: underline;
+        .task-btn.completed {
+            background: #10b981;
         }
 
+        .task-btn:hover {
+            transform: scale(1.05);
+        }
 
+        .referral-section {
+            margin-top: 20px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .referral-link {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 8px;
+            word-break: break-all;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+
+        .share-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .purchased-section {
+            display: none;
+            padding: 20px;
+        }
+
+        .purchased-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
+            background: white;
+            padding: 30px;
             border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 300px;
+            margin: 0 20px;
         }
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
+        .pulse {
+            animation: pulse 2s infinite;
         }
 
-        .close:hover {
-            color: black;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        .form-group {
-            margin-bottom: 15px;
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 3000;
         }
 
-        @media (max-width: 430px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .nav-tabs {
-                gap: 5px;
-            }
-            
-            .nav-tab {
-                padding: 10px 16px;
-                font-size: 0.9rem;
-            }
+        .notification.show {
+            transform: translateX(0);
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <div class="header">
-            <h1>🚀 ZAM</h1>
-            <p>Premium Products & Rewards Platform</p>
+            <h1>MOMTE</h1>
+            <p></p>
+            <div class="user-info" id="userInfo">
+                <div id="userName">Guest User</div>
+            </div>
         </div>
 
-        <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showTab('products')">🛍️ Products</button>
-            <button class="nav-tab" onclick="showTab('account')">👤 Account</button>
-        </div>
-
-        <div id="products" class="tab-content active">
+        <!-- Main Content -->
+        <div class="main-content" id="homeSection">
             <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-icon">🧢</div>
-                    <div class="product-title">Premium Cap</div>
-                    <div class="product-price">0.05 TON</div>
-                    <div class="product-limit">Limited: <span class="stock-count" data-product="Premium Cap">1000</span> available</div>
-                    <button class="buy-btn" onclick="buyProduct('Premium Cap', 0.05)">Buy with TON</button>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-icon">👕</div>
-                    <div class="product-title">Designer T-Shirt</div>
-                    <div class="product-price">0.08 TON</div>
-                    <div class="product-limit">Limited: <span class="stock-count" data-product="Designer T-Shirt">500</span> available</div>
-                    <button class="buy-btn" onclick="buyProduct('Designer T-Shirt', 0.08)">Buy with TON</button>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-icon">🎧</div>
-                    <div class="product-title">Wireless Headphones</div>
-                    <div class="product-price">0.15 TON</div>
-                    <div class="product-limit">Limited: <span class="stock-count" data-product="Wireless Headphones">2300</span> available</div>
-                    <button class="buy-btn" onclick="buyProduct('Wireless Headphones', 0.15)">Buy with TON</button>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-icon">📱</div>
-                    <div class="product-title">Phone Case</div>
-                    <div class="product-price">0.03 TON</div>
-                    <div class="product-limit">Limited: <span class="stock-count" data-product="Phone Case">1500</span> available</div>
-                    <button class="buy-btn" onclick="buyProduct('Phone Case', 0.03)">Buy with TON</button>
-                </div>
-
-                <div class="product-card">
+                <!-- Premium Products -->
+                <div class="product-card pulse">
                     <div class="product-icon">⌚</div>
-                    <div class="product-title">Smart Watch</div>
-                    <div class="product-price">0.25 TON</div>
-                    <div class="product-limit">Limited: <span class="stock-count" data-product="Smart Watch">800</span> available</div>
-                    <button class="buy-btn" onclick="buyProduct('Smart Watch', 0.25)">Buy with TON</button>
+                    <div class="product-price">0.5 TON</div>
+                    <div class="product-stock">Stock: <span id="watch-sold">0</span>/50000</div>
+                    <button class="buy-btn" onclick="buyProduct('watch', 0.5, 'watch-sold')">Buy with TON</button>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card pulse">
+                    <div class="product-icon">🔑</div>
+                    <div class="product-price">0.3 TON</div>
+                    <div class="product-stock">Stock: <span id="headphones-sold">0</span>/5000</div>
+                    <button class="buy-btn" onclick="buyProduct('headphones', 0.3, 'headphones-sold')">Buy with TON</button>
+                </div>
+
+                <div class="product-card pulse">
+                    <div class="product-icon">🎧</div>
+                    <div class="product-price">0.1 TON</div>
+                    <div class="product-stock">Stock: <span id="headphones-sold">0</span>/800000000000000000000000000900000006785609788567938609268y2775613745813756697856874000</div>
+                    <button class="buy-btn" onclick="buyProduct('headphones', 0.3, 'headphones-sold')">Buy with TON</button>
+                </div>
+
+                <div class="product-card pulse">
+                    <div class="product-icon">📱</div>
+                    <div class="product-price">1.2 TON</div>
+                    <div class="product-stock">Stock: <span id="phone-sold">0</span>/5000</div>
+                    <button class="buy-btn" onclick="buyProduct('phone', 1.2, 'phone-sold')">Buy with TON</button>
+                </div>
+
+                <div class="product-card pulse">
+                    <div class="product-icon">💎</div>
+                    <div class="product-price">2.5 TON</div>
+                    <div class="product-stock">Stock: <span id="diamond-sold">0</span>/5000</div>
+                    <button class="buy-btn" onclick="buyProduct('diamond', 2.5, 'diamond-sold')">Buy with TON</button>
+                </div>
+
+                <div class="product-card pulse">
+                    <div class="product-icon">🎮</div>
+                    <div class="product-price">0.8 TON</div>
+                    <div class="product-stock">Stock: <span id="game-sold">0</span>/5000</div>
+                    <button class="buy-btn" onclick="buyProduct('game', 0.8, 'game-sold')">Buy with TON</button>
+                </div>
+
+                <div class="product-card pulse">
                     <div class="product-icon">🎒</div>
-                    <div class="product-title">Travel Backpack</div>
-                    <div class="product-price">0.12 TON</div>
-                    <div class="product-limit">Limited: <span class="stock-count" data-product="Travel Backpack">600</span> available</div>
-                    <button class="buy-btn" onclick="buyProduct('Travel Backpack', 0.12)">Buy with TON</button>
+                    <div class="product-price">0.6 TON</div>
+                    <div class="product-stock">Stock: <span id="bag-sold">0</span>/5000</div>
+                    <button class="buy-btn" onclick="buyProduct('bag', 0.6, 'bag-sold')">Buy with TON</button>
+                </div>
+            </div>
+
+            <!-- Free Products Section -->
+            <div class="free-products">
+                <div class="free-title">🎁 Free Rewards</div>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-icon">🎁</div>
+                        <div class="product-price">FREE</div>
+                        <div class="product-stock">Available: <span id="gift1-available">1000000</span></div>
+                        <button class="buy-btn collect-btn" onclick="collectFree('gift1', 10, 'gift1-available')">Collect</button>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-icon">🏆</div>
+                        <div class="product-price">FREE</div>
+                        <div class="product-stock">Available: <span id="gift2-available">2000000</span></div>
+                        <button class="buy-btn collect-btn" onclick="collectFree('gift2', 25, 'gift2-available')">Collect</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div id="account" class="tab-content">
-            <div class="account-section">
-                <div class="balance-display">
-                    <div class="balance-amount" id="userBalance">0</div>
-                    <div>Balance Points</div>
+        <!-- Account Section -->
+        <div class="account-section" id="accountSection">
+            <div class="balance-card">
+                <div class="balance-amount" id="userBalance">0</div>
+                <div>Points Balance</div>
+            </div>
+
+            <div class="tasks-section">
+                <div class="tasks-title">Complete Tasks</div>
+
+                <div class="task-item">
+                    <div class="task-info">
+                        <div class="task-title">Subscribe YouTube Channel</div>
+                        <div class="task-reward">+50 Points</div>
+                    </div>
+                    <button class="task-btn" id="youtubeTask" onclick="window.open('https://youtube.com/@sk7technology', '_blank'); completeTask('youtube', 50)">Open</button>
                 </div>
 
-                <div class="telegram-channel">
-                    <h3>📢 Join Our Telegram Channel</h3>
-                    <a href="https://t.me/mtvip999" target="_blank">@mtvip999</a>
-                    <p>Stay updated with latest products and exclusive offers!</p>
+                <div class="task-item">
+                    <div class="task-info">
+                        <div class="task-title">Follow Telegram Channel</div>
+                        <div class="task-reward">+30 Points</div>
+                    </div>
+                    <button class="task-btn" id="telegramTask" onclick="window.open('https://t.me/MOMTECOMMUNITY', '_blank'); completeTask('telegram', 30)">Open</button>
                 </div>
 
-                <h3 style="margin-bottom: 20px; text-align: center;">🎯 Complete Tasks to Earn Points</h3>
-                
-                <div class="referral-section" style="background: #f0f8ff; padding: 20px; border-radius: 15px; margin-bottom: 20px; border-left: 4px solid #007bff;">
-                    <h3 style="color: #007bff; margin-bottom: 15px;">🔗 Referral Link</h3>
-                    <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                        <input type="text" id="referralLink" readonly style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.9rem;">
-                        <div style="margin-top: 10px; display: flex; gap: 10px;">
-                            <button onclick="copyReferralLink()" style="flex: 1; padding: 8px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">📋 Copy</button>
-                            <button onclick="shareReferralLink()" style="flex: 1; padding: 8px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">📤 Share</button>
-                        </div>
+                <div class="task-item">
+                    <div class="task-info">
+                        <div class="task-title">Join Telegram Bot</div>
+                        <div class="task-reward">+40 Points</div>
                     </div>
-                    <div style="text-align: center; color: #666;">
-                        <p>Referrals: <span id="referralCount" style="font-weight: bold; color: #007bff;">0</span>/50</p>
-                        <p style="font-size: 0.9rem;">Earn 1 point for each referral!</p>
-                    </div>
-                </div>
-                
-                <div class="tasks-grid">
-                    <div class="task-card">
-                        <div class="task-info">
-                            <h3>📺 Subscribe YouTube Channel</h3>
-                            <div class="task-reward">+50 Points</div>
-                        </div>
-                        <button class="task-btn" onclick="completeTask('youtube', 50)">Open</button>
-                    </div>
-
-                    <div class="task-card">
-                        <div class="task-info">
-                            <h3>📱 Follow Telegram Channel</h3>
-                            <div class="task-reward">+30 Points</div>
-                        </div>
-                        <button class="task-btn" onclick="completeTask('telegram', 30)">Open</button>
-                    </div>
-
-                    <div class="task-card">
-                        <div class="task-info">
-                            <h3>🤖 Open Telegram Bot</h3>
-                            <div class="task-reward">+25 Points</div>
-                        </div>
-                        <button class="task-btn" onclick="completeTask('bot', 25)">Open</button>
-                    </div>
-
-                    <div class="task-card">
-                        <div class="task-info">
-                            <h3>👥 Invite 3 Friends</h3>
-                            <div class="task-reward">+100 Points</div>
-                        </div>
-                        <button class="task-btn" onclick="completeTask('invite', 100)">Open</button>
-                    </div>
-
-                    <div class="task-card">
-                        <div class="task-info">
-                            <h3>💬 Join Community Group</h3>
-                            <div class="task-reward">+40 Points</div>
-                        </div>
-                        <button class="task-btn" onclick="completeTask('community', 40)">Open</button>
-                    </div>
-
-                    <div class="task-card">
-                        <div class="task-info">
-                            <h3>⭐ Rate Our App</h3>
-                            <div class="task-reward">+35 Points</div>
-                        </div>
-                        <button class="task-btn" onclick="completeTask('rate', 35)">Open</button>
-                    </div>
+                    <button class="task-btn" id="botTask" onclick="window.open('https://t.me/jejbduiwjdbuejbot', '_blank'); completeTask('bot', 40)">Open</button>
                 </div>
             </div>
+
+            <div class="referral-section">
+                <div class="tasks-title">Referral Program</div>
+                <p style="margin-bottom: 10px;">Share your referral link and earn 1 point for each friend (up to 50 friends)</p>
+                <div class="referral-link" id="referralLink">https://t.me/Munna2526?start=ref_12345</div>
+                <div style="margin-bottom: 10px;">Referrals: <span id="referralCount">0</span>/50</div>
+                <button class="share-btn" onclick="shareReferral()">Share Referral Link</button>
+            </div>
+        </div>
+
+        <!-- Purchased Section -->
+        <div class="purchased-section" id="purchasedSection">
+            <h2 style="margin-bottom: 20px;">My Purchases</h2>
+            <h5 style="margin-bottom: 10px;">🔔 Important Notice – Product Purchase, Token Conversion & Redemption When you purchase a product using TON, it will be automatically added to your collection. After refreshing, the item will disappear from view — this means it has been securely stored and is eligible for future real-world redemption. Only products purchased with TON are valid. After our platform is officially listed, payment must be completed using the same TON wallet address originally used. No other method will be accepted. Your points balance (shown in tasks) will reset after each login, because those points are automatically converted into crypto (future utility tokens). After listing, you will be notified exactly how many tokens you've earned based on your activity. Real products will be redeemable in future using your verified TON wallet. Start collecting now — your rewards are real and your wallet is your key!🔗 Stay updated: Follow our official Telegram channel @MOMTECOMMUNITY</h5>
+            <div id="purchasedItems">
+                <div class="purchased-item">
+                    <p>No purchases yet. Buy some products to see them here!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <button class="nav-btn" onclick="showSection('home')">Home</button>
+            <button class="nav-btn" onclick="showSection('account')">Account</button>
+            <button class="nav-btn" onclick="showSection('purchased')">My Items</button>
         </div>
     </div>
 
-
-
-    <!-- Product Modal -->
-    <div id="productModal" class="modal">
+    <!-- Purchase Modal -->
+    <div class="modal" id="purchaseModal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('productModal')">&times;</span>
-            <h2>Add New Product</h2>
-            <div class="form-group">
-                <label>Product Name:</label>
-                <input type="text" id="productName" placeholder="Enter product name">
-            </div>
-            <div class="form-group">
-                <label>Price (TON):</label>
-                <input type="number" id="productPrice" step="0.01" placeholder="0.05">
-            </div>
-            <div class="form-group">
-                <label>Icon (Emoji):</label>
-                <input type="text" id="productIcon" placeholder="🎁">
-            </div>
-            <div class="form-group">
-                <label>Limit:</label>
-                <input type="number" id="productLimit" placeholder="1000">
-            </div>
-            <button onclick="addProduct()" style="width: 100%; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Product</button>
+            <h3>Processing Payment...</h3>
+            <div class="loading" style="margin: 20px 0;"></div>
+            <p>Redirecting to TON Wallet...</p>
         </div>
     </div>
 
-    <!-- Task Modal -->
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('taskModal')">&times;</span>
-            <h2>Add New Task</h2>
-            <div class="form-group">
-                <label>Task Name:</label>
-                <input type="text" id="taskName" placeholder="Enter task name">
-            </div>
-            <div class="form-group">
-                <label>Reward Points:</label>
-                <input type="number" id="taskReward" placeholder="50">
-            </div>
-            <div class="form-group">
-                <label>Task URL:</label>
-                <input type="url" id="taskUrl" placeholder="https://example.com">
-            </div>
-            <button onclick="addTask()" style="width: 100%; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Task</button>
-        </div>
-    </div>
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
 
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        // TON Wallet Address
+        // Telegram Bot Configuration
+        const TELEGRAM_BOT_TOKEN = '8S0a4S854aE4dcdb084499b5d5a2d20';
+        const TELEGRAM_APP_ID = '29246240';
+        const BOT_USERNAME = 'Munna2526';
+
+        // Global variables
+        let userBalance = 0;
+        let purchasedItems = [];
+        let currentSection = 'home';
+        let completedTasks = {};
+        let referralCount = 0;
+        let stockCounts = {};
+
+        // TON Address
         const TON_ADDRESS = 'UQCC9TTHlJZLNH09baIi3UONk69UR-8YbedySf7F9sF-UJJl';
-        
-        // User data storage
-        let userData = {
-            balance: 0,
-            completedTasks: [],
-            ip: null,
-            referralCode: null,
-            referralCount: 0,
-            referrals: []
-        };
 
-        // Product stock tracking
-        let productStock = {
-            'Premium Cap': 1000,
-            'Designer T-Shirt': 500,
-            'Wireless Headphones': 2300,
-            'Phone Case': 1500,
-            'Smart Watch': 800,
-            'Travel Backpack': 600
-        };
-
-        // Get user IP for automatic account connection
-        fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
-            .then(data => {
-                userData.ip = data.ip;
+        // Initialize app
+        function initApp() {
+            // Initialize Telegram WebApp
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand();
                 
-                // Load saved product stock
-                const savedStock = JSON.parse(localStorage.getItem('productStock') || '{}');
-                productStock = {...productStock, ...savedStock};
+                // Get user data from Telegram
+                const user = window.Telegram.WebApp.initDataUnsafe?.user;
+                if (user) {
+                    document.getElementById('userName').textContent = user.first_name || 'User';
+                    document.getElementById('userInfo').style.display = 'block';
+                    
+                    // Update referral link with user ID
+                    const referralLink = `https://t.me/${BOT_USERNAME}?start=ref_${user.id}`;
+                    document.getElementById('referralLink').textContent = referralLink;
+                }
                 
-                loadUserData();
-                checkReferral();
-                updateProductDisplay();
-            })
-            .catch(error => {
-                console.log('IP detection failed');
-                userData.ip = 'unknown_' + Math.random().toString(36).substr(2, 9);
-                loadUserData();
-                updateProductDisplay();
-            });
-
-        // Load user data
-        function loadUserData() {
-            const savedData = JSON.parse(localStorage.getItem(`user_${userData.ip}`) || '{}');
-            userData = {...userData, ...savedData};
-            
-            // Generate referral code if not exists
-            if (!userData.referralCode) {
-                userData.referralCode = generateReferralCode();
-                saveUserData();
+                // Set app theme
+                document.body.style.backgroundColor = window.Telegram.WebApp.themeParams.bg_color || '#667eea';
             }
-            
-            updateBalanceDisplay();
-            updateReferralDisplay();
+
+            // Load saved data
+            loadUserData();
+            updateUI();
         }
 
-        // Save user data
-        function saveUserData() {
-            localStorage.setItem(`user_${userData.ip}`, JSON.stringify(userData));
-        }
+        // Section management
+        function showSection(section) {
+            // Hide all sections
+            document.getElementById('homeSection').style.display = 'none';
+            document.getElementById('accountSection').style.display = 'none';
+            document.getElementById('purchasedSection').style.display = 'none';
 
-        // Update balance display
-        function updateBalanceDisplay() {
-            document.getElementById('userBalance').textContent = userData.balance;
-        }
-
-        // Show tab
-        function showTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active class from all nav tabs
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked nav tab
-            event.target.classList.add('active');
-        }
-
-        // Buy product with TON
-        function buyProduct(productName, price) {
-            // Check stock
-            if (productStock[productName] <= 0) {
-                alert('❌ Sorry! This product is out of stock.');
-                updateProductDisplay();
-                return;
+            // Show selected section
+            if (section === 'home') {
+                document.getElementById('homeSection').style.display = 'block';
+            } else if (section === 'account') {
+                document.getElementById('accountSection').style.display = 'block';
+            } else if (section === 'purchased') {
+                document.getElementById('purchasedSection').style.display = 'block';
+                updatePurchasedItems();
             }
+
+            currentSection = section;
+        }
+
+        // Buy product function
+        function buyProduct(productName, price, stockId) {
+            showNotification('Redirecting to TON Wallet...');
             
+            // Show loading modal
+            document.getElementById('purchaseModal').style.display = 'flex';
+
             // Create TON payment URL
-            const tonUrl = `ton://transfer/${TON_ADDRESS}?amount=${Math.round(price * 1000000000)}&text=Purchase: ${productName}`;
+            const amount = price * 1000000000; // Convert to nanotons
+            const tonPaymentUrl = `ton://transfer/${TON_ADDRESS}?amount=${amount}&text=Purchase_${productName}_${Date.now()}`;
             
-            // Try to open TON wallet
-            window.open(tonUrl, '_blank');
-            
-            // Show confirmation message
+            // Simulate payment process
             setTimeout(() => {
-                if (confirm(`Payment initiated for ${productName} (${price} TON). Click OK when payment is completed.`)) {
-                    // Decrease stock
-                    productStock[productName]--;
-                    localStorage.setItem('productStock', JSON.stringify(productStock));
-                    updateProductDisplay();
-                    alert('🎉 Product purchased successfully! You will receive it soon.');
+                document.getElementById('purchaseModal').style.display = 'none';
+                
+                // Add to purchased items
+                purchasedItems.push({
+                    name: productName,
+                    price: price,
+                    date: new Date().toLocaleDateString(),
+                    id: Date.now()
+                });
+
+                // Update stock count
+                const stockElement = document.getElementById(stockId);
+                if (stockElement) {
+                    const currentSold = parseInt(stockElement.textContent);
+                    stockElement.textContent = currentSold + 1;
+                }
+
+                showNotification('Purchase successful! Check My Items.');
+                saveUserData();
+                
+                // Try to open TON wallet (this may not work in all environments)
+                try {
+                    window.open(tonPaymentUrl, '_blank');
+                } catch (e) {
+                    console.log('Could not open TON wallet automatically');
                 }
             }, 2000);
         }
 
-        // Complete task
-        function completeTask(taskId, points) {
-            if (userData.completedTasks.includes(taskId)) {
-                alert('Task already completed!');
+        // Collect free items
+        function collectFree(itemName, points, availableId) {
+            const availableElement = document.getElementById(availableId);
+            const currentAvailable = parseInt(availableElement.textContent);
+            
+            if (currentAvailable > 0) {
+                userBalance += points;
+                availableElement.textContent = currentAvailable - 1;
+                
+                // Change button to confirm
+                const button = event.target;
+                button.textContent = 'Confirmed';
+                button.style.background = '#10b981';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    button.textContent = 'Collect';
+                    button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                    button.disabled = false;
+                }, 3000);
+
+                showNotification(`+${points} points collected!`);
+                updateUI();
+                saveUserData();
+            }
+        }
+
+        // Complete tasks
+        function completeTask(taskType, reward) {
+            if (completedTasks[taskType]) {
+                showNotification('Task already completed!');
                 return;
             }
 
-            // Simulate opening external link
-            let taskUrl = '';
-            switch(taskId) {
-                case 'youtube':
-                    taskUrl = 'https://youtube.com/';
-                    break;
-                case 'telegram':
-                    taskUrl = 'https://t.me/mtvip999';
-                    break;
-                case 'bot':
-                    taskUrl = 'https://t.me/your_bot';
-                    break;
-                default:
-                    taskUrl = 'https://t.me/mtvip999';
-            }
-
-            // Open task link
-            window.open(taskUrl, '_blank');
-
-            // Complete task after delay
+            const button = document.getElementById(taskType + 'Task');
+            
+            // Simulate task completion
             setTimeout(() => {
-                if (confirm('Did you complete the task? Click OK to claim your reward.')) {
-                    userData.balance += points;
-                    userData.completedTasks.push(taskId);
-                    updateBalanceDisplay();
-                    saveUserData();
-                    
-                    // Update button
-                    event.target.textContent = 'Completed';
-                    event.target.classList.add('completed');
-                    event.target.disabled = true;
-                    
-                    alert(`🎉 Task completed! +${points} points added to your balance.`);
-                }
+                userBalance += reward;
+                completedTasks[taskType] = true;
+                button.textContent = 'Completed';
+                button.classList.add('completed');
+                button.disabled = true;
+                
+                showNotification(`+${reward} points earned!`);
+                updateUI();
+                saveUserData();
             }, 3000);
         }
 
-        // Generate referral code
-        function generateReferralCode() {
-            return 'ZAM' + Math.random().toString(36).substr(2, 8).toUpperCase();
-        }
-
-        // Update referral display
-        function updateReferralDisplay() {
-            const referralLink = `${window.location.origin}${window.location.pathname}?ref=${userData.referralCode}`;
-            document.getElementById('referralLink').value = referralLink;
-            document.getElementById('referralCount').textContent = userData.referralCount;
-        }
-
-        // Copy referral link
-        function copyReferralLink() {
-            const referralInput = document.getElementById('referralLink');
-            referralInput.select();
-            referralInput.setSelectionRange(0, 99999);
-            document.execCommand('copy');
-            alert('📋 Referral link copied to clipboard!');
-        }
-
-        // Share referral link
-        function shareReferralLink() {
-            const referralLink = document.getElementById('referralLink').value;
-            if (navigator.share) {
+        // Referral system
+        function shareReferral() {
+            const referralLink = document.getElementById('referralLink').textContent;
+            
+            if (window.Telegram && window.Telegram.WebApp) {
+                // Use Telegram WebApp share functionality
+                window.Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent('Join MOMTE - Get exclusive digital products with cryptocurrency!')}`);
+            } else if (navigator.share) {
                 navigator.share({
-                    title: 'Join ZAM - Premium Products Platform',
-                    text: 'Join me on ZAM and get amazing products with TON!',
+                    title: 'Join MOMTE',
+                    text: 'Get exclusive digital products with cryptocurrency!',
                     url: referralLink
                 });
             } else {
-                copyReferralLink();
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(referralLink).then(() => {
+                    showNotification('Referral link copied to clipboard!');
+                });
             }
         }
 
-        // Update product stock display
-        function updateProductDisplay() {
-            document.querySelectorAll('.stock-count').forEach(span => {
-                const productName = span.getAttribute('data-product');
-                span.textContent = productStock[productName];
-                
-                // Disable buy button if out of stock
-                const card = span.closest('.product-card');
-                const buyBtn = card.querySelector('.buy-btn');
-                if (productStock[productName] <= 0) {
-                    buyBtn.textContent = 'Out of Stock';
-                    buyBtn.disabled = true;
-                    buyBtn.style.background = '#ccc';
+        // Update purchased items display
+        function updatePurchasedItems() {
+            const container = document.getElementById('purchasedItems');
+            
+            if (purchasedItems.length === 0) {
+                container.innerHTML = '<div class="purchased-item"><p>No purchases yet. Buy some products to see them here!</p></div>';
+                return;
+            }
+
+            container.innerHTML = purchasedItems.map(item => `
+                <div class="purchased-item">
+                    <h4>${item.name.charAt(0).toUpperCase() + item.name.slice(1)}</h4>
+                    <p>Price: ${item.price} TON</p>
+                    <p>Date: ${item.date}</p>
+                </div>
+            `).join('');
+        }
+
+        // Update UI elements
+        function updateUI() {
+            document.getElementById('userBalance').textContent = userBalance;
+            document.getElementById('referralCount').textContent = referralCount;
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Save user data
+        function saveUserData() {
+            const userData = {
+                balance: userBalance,
+                purchased: purchasedItems,
+                completedTasks: completedTasks,
+                referralCount: referralCount,
+                stockCounts: stockCounts
+            };
+            
+            try {
+                // Send data to Telegram Bot API
+                if (window.Telegram && window.Telegram.WebApp) {
+                    const user = window.Telegram.WebApp.initDataUnsafe?.user;
+                    if (user) {
+                        // You can send this data to your bot's webhook
+                        console.log('User ID:', user.id);
+                        console.log('Saving user data:', userData);
+                        
+                        // Example API call to save data (replace with your backend URL)
+                        // fetch(`https://your-bot-backend.com/save-user-data`, {
+                        //     method: 'POST',
+                        //     headers: { 'Content-Type': 'application/json' },
+                        //     body: JSON.stringify({ userId: user.id, data: userData })
+                        // });
+                    }
+                }
+            } catch (e) {
+                console.log('Could not save data:', e);
+            }
+        }
+
+        // Load user data
+        function loadUserData() {
+            try {
+                // In actual implementation, load from your backend
+                // For demo purposes, we'll start with default values
+                userBalance = 0;
+                purchasedItems = [];
+                completedTasks = {};
+                referralCount = 0;
+                stockCounts = {};
+            } catch (e) {
+                console.log('Could not load user data');
+            }
+        }
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', initApp);
+
+        // Handle Telegram WebApp events
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.onEvent('mainButtonClicked', function() {
+                // Handle main button clicks
+            });
+
+            window.Telegram.WebApp.onEvent('backButtonClicked', function() {
+                if (currentSection !== 'home') {
+                    showSection('home');
                 }
             });
         }
-
-        // Check for referral on page load
-        function checkReferral() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const referralCode = urlParams.get('ref');
-            
-            if (referralCode && referralCode !== userData.referralCode) {
-                // Find referrer and add point
-                const allUsers = Object.keys(localStorage).filter(key => key.startsWith('user_'));
-                for (let userKey of allUsers) {
-                    const user = JSON.parse(localStorage.getItem(userKey));
-                    if (user.referralCode === referralCode) {
-                        // Check if this IP hasn't been referred before
-                        if (!user.referrals.includes(userData.ip)) {
-                            user.referralCount++;
-                            user.balance++;
-                            user.referrals.push(userData.ip);
-                            localStorage.setItem(userKey, JSON.stringify(user));
-                            
-                            alert('🎉 Welcome! You were referred by a friend. They earned 1 point!');
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-
-        // Initialize completed tasks on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                document.querySelectorAll('.task-btn').forEach((btn, index) => {
-                    const taskIds = ['youtube', 'telegram', 'bot', 'invite', 'community', 'rate'];
-                    if (userData.completedTasks.includes(taskIds[index])) {
-                        btn.textContent = 'Completed';
-                        btn.classList.add('completed');
-                        btn.disabled = true;
-                    }
-                });
-            }, 1000);
-        });
     </script>
 </body>
 </html>
