@@ -288,6 +288,9 @@
         <div id="a4-page">
             <div class="header">
                 <h1>DUMURIA WARRIORS</h1>
+                <p style="font-size: 20px; color: #764ba2; margin-top: 12px; font-weight: 700; letter-spacing: 1.5px;">
+                    Team Owner: <span style="color: #667eea;">Md Al Amin</span>
+                </p>
             </div>
 
             <div id="rosterContent">
@@ -303,7 +306,15 @@
     </div>
 
     <script>
-        let players = [];
+        let players = [
+            { name: "Simanto", number: "10", size: "L" },
+            { name: "FARHAN", number: "75", size: "L" },
+            { name: "SB", number: "11", size: "L" },
+            { name: "Munna", number: "90", size: "L" },
+            { name: "RABBY", number: "57", size: "L" },
+            { name: "SHUVOJIT", number: "16", size: "L" },
+            { name: "BULBUL", number: "55", size: "M" }
+        ];
 
         function addPlayer() {
             const name = document.getElementById('playerName').value.trim();
@@ -421,6 +432,9 @@
                 addPlayer();
             }
         });
+
+        // Display initial players on page load
+        updateDisplay();
     </script>
 </body>
 </html>
